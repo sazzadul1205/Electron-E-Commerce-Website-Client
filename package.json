@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@smastrom/react-rating": "^1.4.0",
+    "@tanstack/react-query": "^5.17.19",
+    "axios": "^1.6.7",
     "firebase": "^10.7.2",
     "framer-motion": "^10.18.0",
     "localforage": "^1.10.0",
@@ -19,9 +21,12 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.49.2",
     "react-icons": "^5.0.1",
+    "react-loader-spinner": "^6.1.6",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.21.2",
+    "react-scroll-to-top": "^3.0.0",
     "sort-by": "^1.2.0",
+    "sweetalert2": "^11.10.4",
     "swiper": "^11.0.5"
   },
   "devDependencies": {

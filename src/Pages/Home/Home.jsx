@@ -8,22 +8,24 @@ import NewsletterSignup from "./NewsletterSignup/NewsletterSignup";
 import SpecialOffers from "./SpecialOffers/SpecialOffers";
 import Testimonials from "./Testimonials/Testimonials";
 import FeaturedBrands from "./featuredBrands/featuredBrands";
-
+import ScrollToTop from "react-scroll-to-top";
 const Home = () => {
-    return (
-        <div className="bg-white">
-            <Banner></Banner>
-            <Featured></Featured>
-            <SpecialOffers></SpecialOffers>
-            <NewArrivals></NewArrivals>
-            <BestSellers></BestSellers>
-            <Testimonials></Testimonials>
-            <BlogSection></BlogSection>
-            <NewsletterSignup></NewsletterSignup>
-            <FeaturedBrands></FeaturedBrands>
-            <ContactInformation></ContactInformation>
-        </div>
-    );
+
+  return (
+    <div className="bg-white">
+      <Banner></Banner>
+      <Featured></Featured>
+      <SpecialOffers></SpecialOffers>
+      <NewArrivals></NewArrivals>
+      <BestSellers></BestSellers>
+      <Testimonials></Testimonials>
+      <BlogSection></BlogSection>
+      <NewsletterSignup></NewsletterSignup>
+      <FeaturedBrands></FeaturedBrands>
+      <ContactInformation></ContactInformation>
+      <ScrollToTop smooth />
+    </div>
+  );
 };
 
 export default Home;
