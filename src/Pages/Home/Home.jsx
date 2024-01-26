@@ -1,11 +1,13 @@
 import Banner from "./Banner/Banner";
 import BestSellers from "./BestSellers/BestSellers";
 import BlogSection from "./BlogSection/BlogSection ";
+import ContactInformation from "./ContactInformation/ContactInformation";
 import Featured from "./Featured/Featured";
 import NewArrivals from "./NewArrivals/NewArrivals";
 import NewsletterSignup from "./NewsletterSignup/NewsletterSignup";
 import SpecialOffers from "./SpecialOffers/SpecialOffers";
 import Testimonials from "./Testimonials/Testimonials";
+import FeaturedBrands from "./featuredBrands/featuredBrands";
 
 const Home = () => {
     return (
@@ -18,6 +20,8 @@ const Home = () => {
             <Testimonials></Testimonials>
             <BlogSection></BlogSection>
             <NewsletterSignup></NewsletterSignup>
+            <FeaturedBrands></FeaturedBrands>
+            <ContactInformation></ContactInformation>
         </div>
     );
 };

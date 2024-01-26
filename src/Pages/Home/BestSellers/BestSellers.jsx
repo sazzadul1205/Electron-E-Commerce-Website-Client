@@ -88,8 +88,8 @@ const BestSellers = () => {
                             </div>
                         )}
                         <img src={product.image} alt={product.name} className="card mb-4 rounded-md w-44 h-44 mx-auto relative" />
-                        <h3 className="text-xl font-semibold mb-2 h-16">{product.name}</h3>
-                        <p className="text-gray-700 mb-2">{product.description}</p>
+                        <h3 className="text-xl font-semibold mb-2 h-20">{product.name}</h3>
+                        <p className="text-gray-700 mb-2 h-16">{product.description}</p>
                         <p className="text-gray-700 mb-2">${parseFloat(product.price).toFixed(2)}</p>
                         <div className="flex items-center mb-2">
                             <span className="text-yellow-500">
@@ -105,7 +105,6 @@ const BestSellers = () => {
                             <button className="bg-red-500 hover:bg-red-400 text-white rounded-lg w-full p-2 flex items-center justify-center">
                                 <h1 className="text-center">Add to Cart</h1>
                                 <CiShoppingCart className='text-2xl ml-2' />
-                                <p >Hello</p>
                             </button>
                         </div>
                     </div>

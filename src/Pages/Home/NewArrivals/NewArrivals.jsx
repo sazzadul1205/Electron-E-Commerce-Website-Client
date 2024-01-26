@@ -77,7 +77,7 @@ const NewArrivals = () => {
                             </div>
                         )}
                         <img src={product.image} alt={product.name} className="card mb-4 rounded-md w-44 h-44 mx-auto relative" />
-                        <h3 className="text-xl font-semibold mb-2">{product.name}</h3>
+                        <h3 className="text-xl font-semibold mb-2 h-10">{product.name}</h3>
                         <p className="text-gray-700 mb-2">{product.description}</p>
                         <p className="text-gray-700 mb-2">${parseFloat(product.price).toFixed(2)}</p>
                         <div className="flex items-center mb-2">
