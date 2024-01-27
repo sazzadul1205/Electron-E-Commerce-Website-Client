@@ -125,14 +125,13 @@ const Navbar = () => {
       </div>
       <div className="navbar-end flex">
         {user ? (
-          <>
-            <button
-              className="w-28 p-3 bg-blue-500 hover:bg-blue-200 text-white hover:text-black rounded-xl"
-              onClick={handleSignOut}
-            >
-              Log out
-            </button>
-            <div className="avatar flex-col ml-5">
+          <div className="bg-white opacity-90 p-1 flex items-center">
+            <Link to={"/Dashboard"}>
+              <button className="w-28 p-2 bg-blue-200 hover:bg-blue-400 text-black hover:text-black rounded-xl">
+                Dashboard
+              </button>
+            </Link>
+            <div className="avatar flex-col ml-5 relative">
               <div
                 className="w-14 h-14 rounded-full ring ring-primary mx-auto"
                 onClick={handleClick}
@@ -144,14 +143,22 @@ const Navbar = () => {
                 />
               </div>
               {dropdownVisible && (
-                <div className="dropdown bg-white text-black w-[200px] h-10 p-2 -right-20 absolute top-full rounded-xl shadow-lg">
+                <div className="dropdown bg-white text-black w-[200px] h-28 p-2 -right-20 absolute top-full rounded-xl shadow-lg opacity-90">
                   <ul className="list-none">
-                    <li>{user?.displayName}</li>
+                    <li className="text-center mt-2">{user?.displayName}</li>
+                    <li>
+                      <button
+                        className="w-full p-2 mt-2 bg-blue-500 hover:bg-blue-200 text-white hover:text-black rounded-xl"
+                        onClick={handleSignOut}
+                      >
+                        Log out
+                      </button>
+                    </li>
                   </ul>
                 </div>
               )}
             </div>
-          </>
+          </div>
         ) : (
           <>
             <Link to={"/login"}>
