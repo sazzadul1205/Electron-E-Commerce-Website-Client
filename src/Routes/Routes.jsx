@@ -4,6 +4,7 @@ import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
 import DashboardLayout from "../Layout/DashboardLayout";
+import HomePage from "../Pages/Dashboard/Admin/HomePage/HomePage";
 
 export const router = createBrowserRouter([
   {
@@ -26,6 +27,12 @@ export const router = createBrowserRouter([
   },
   {
     path: "/Dashboard",
-    element: <DashboardLayout></DashboardLayout>
+    element: <DashboardLayout></DashboardLayout>,
+    children:[
+      {
+        path:"PHomePageContent",
+        element: <HomePage></HomePage>
+      }
+    ]
   }
 ]);

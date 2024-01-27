@@ -32,11 +32,9 @@ const DashboardLayout = () => {
 
   // Admin Links
   const AdminNavLink = [
-    { to: "allSubscribers", label: "All subscribers", color: "blue" },
-    { to: "allTrainers", label: "All Trainers:", color: "green" },
-    { to: "appliedTrainer", label: "Applied Trainer:", color: "orange" },
-    { to: "balance", label: "Balance", color: "purple" },
-    { to: "addNewForum", label: "Add new Forum", color: "teal" },
+    { to: "PHomePageContent", label: "Home Page Contents", color: "blue" },
+    { to: "allProducts", label: "All Products", color: "green" },
+    { to: "NewsLetterSubscriber", label: "News Letter Subscribers", color: "purple" },
   ];
 
   const adminNav = AdminNavLink.map((link) => (
@@ -46,7 +44,7 @@ const DashboardLayout = () => {
         exact
         className={({ isActive }) =>
           `text-lg font-semibold relative group ${
-            isActive ? `text-${link.color}-500` : "text-black hover:text-white"
+            isActive ? `bg-${link.color}-500 text-white` : `text-black hover:text-white`
           }`
         }
       >
@@ -59,10 +57,10 @@ const DashboardLayout = () => {
   ));
 
   return (
-    <div className="bg-gray-200">
+    <div className="">
       <div className="flex mx-[200px] ">
         {/* Dashboard side bar */}
-        <div className="w-64 min-h-screen pt-10 fixed border border-black bg-white">
+        <div className="w-80 min-h-screen pt-10 fixed border border-black bg-white">
           <img src={logo} alt="" className="w-52 mx-auto" />
           <h1 className="text-center text-2xl font-bold  ">Electron</h1>
           <ul className="menu p-4">
@@ -75,7 +73,7 @@ const DashboardLayout = () => {
           </ul>
         </div>
         {/* Dashboard Content */}
-        <div className="flex-1 ml-64 overflow-y-auto  min-h-screen">
+        <div className="flex-1 ml-[320px] mt-2 overflow-y-auto  min-h-screen">
           <Outlet></Outlet>
         </div>
       </div>
