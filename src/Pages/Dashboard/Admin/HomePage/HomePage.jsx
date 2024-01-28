@@ -1,6 +1,7 @@
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import AdmFeaturedProducts from "./AdmFeaturedProducts/AdmFeaturedProducts";
+import AdmSpecialOffers from "./AdmSpecialOffers/AdmSpecialOffers";
 
 const HomePage = () => {
   return (
@@ -19,7 +20,7 @@ const HomePage = () => {
           <AdmFeaturedProducts></AdmFeaturedProducts>
         </TabPanel>
         <TabPanel>
-          <h2>Any content 2</h2>
+          <AdmSpecialOffers></AdmSpecialOffers>
         </TabPanel>
       </Tabs>
     </div>

@@ -1,32 +1,31 @@
-import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import Swal from "sweetalert2";
 import useAxiosPublic from "../../../../../Hooks/useAxiosPublic";
 import Loader from "../../../../Components/Loader";
-import AddFeaturedProduct from "./AddFeaturedProduct/AddFeaturedProduct";
-import UpdateFeaturedProducts from "./UpdateFeaturedProducts/UpdateFeaturedProducts";
+import { useState } from "react";
+import Swal from "sweetalert2";
+import ViewSpecialOffers from "./ViewSpecialOffers/ViewSpecialOffers";
+import AddSpecialOffers from "./AddSpecialOffers/AddSpecialOffers";
+import UpdateSpecialOffers from "./UpdateSpecialOffers/UpdateSpecialOffers";
 
-const AdmFeaturedProducts = () => {
+const AdmSpecialOffers = () => {
   const axiosPublic = useAxiosPublic();
-
   const {
-    data: admFeaturedCategories = [],
+    data: specialOffers = [],
     isLoading,
-    refetch,
+    refetch
   } = useQuery({
-    queryKey: ["admFeaturedCategories"],
+    queryKey: ["specialOffers"],
     queryFn: async () => {
-      const res = await axiosPublic.get(`/featuredCategories`);
+      const res = await axiosPublic.get(`/specialOffers`);
       return res.data;
     },
   });
 
   const [searchTerm, setSearchTerm] = useState("");
 
-  const filteredCategories = admFeaturedCategories.filter((category) =>
+  const filteredCategories = specialOffers.filter((category) =>
     category.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
   const handleDelete = async (productId, productName) => {
     try {
       const result = await showConfirmationAlert(
@@ -36,7 +35,7 @@ const AdmFeaturedProducts = () => {
       );
 
       if (result.isConfirmed) {
-        await axiosPublic.delete(`/featuredCategories/${productId}`);
+        await axiosPublic.delete(`/specialOffers/${productId}`);
         refetch();
         showSuccessAlert(
           "Product Deleted!",
@@ -51,7 +50,6 @@ const AdmFeaturedProducts = () => {
       );
     }
   };
-
   const reloadContents = () => {
     refetch();
   };
@@ -63,7 +61,7 @@ const AdmFeaturedProducts = () => {
   return (
     <div>
       <h1 className="my-10 text-center text-3xl font-bold text-blue-500">
-        Featured Products
+        Special Offers
       </h1>
       <div className="flex justify-between items-center mb-4">
         <div className="w-1/5 ml-2 flex">
@@ -85,7 +83,7 @@ const AdmFeaturedProducts = () => {
           className="p-3 bg-green-500 hover.bg-green-400 text-white rounded-xl"
           onClick={() => document.getElementById("my_modal_1").showModal()}
         >
-          + Add Featured Products
+          + Add Special Offers
         </button>
       </div>
       <div className="ml-2 text-black">
@@ -113,7 +111,9 @@ const AdmFeaturedProducts = () => {
                     <button
                       className="p-3 w-24 bg-yellow-500 hover:bg-yellow-400 text-white rounded-xl"
                       onClick={() =>
-                        document.getElementById(`my_modal_2_${category._id}`).showModal()
+                        document
+                          .getElementById(`my_modal_2_${category._id}`)
+                          .showModal()
                       }
                     >
                       Update
@@ -126,7 +126,9 @@ const AdmFeaturedProducts = () => {
                             <button
                               className="text-3xl font-bold mr-5 text-red-500"
                               onClick={() =>
-                                document.getElementById(`my_modal_2_${category._id}`).close()
+                                document
+                                  .getElementById(`my_modal_2_${category._id}`)
+                                  .close()
                               }
                             >
                               x
@@ -138,12 +140,14 @@ const AdmFeaturedProducts = () => {
                             Update Product
                           </h3>
                         </div>
-                        <UpdateFeaturedProducts
+                        <UpdateSpecialOffers
                           key={category._id}
                           category={category} // Pass the entire category object
                           onSuccess={reloadContents}
                           onClose={() =>
-                            document.getElementById(`my_modal_2_${category._id}`).close()
+                            document
+                              .getElementById(`my_modal_2_${category._id}`)
+                              .close()
                           }
                         />
                       </div>
@@ -155,6 +159,45 @@ const AdmFeaturedProducts = () => {
                     >
                       Delete
                     </button>
+                    {/* View Button */}
+                    <button
+                      className="p-3 w-24 bg-green-500 hover:bg-green-400 text-white rounded-xl"
+                      onClick={() =>
+                        document
+                          .getElementById(`my_modal_3_${category._id}`)
+                          .showModal()
+                      }
+                    >
+                      View
+                    </button>
+                    {/* view product modal */}
+                    <dialog id={`my_modal_3_${category._id}`} className="modal">
+                      <div className="modal-box bg-white">
+                        <div className="modal-action">
+                          <form method="dialog">
+                            <button
+                              className="text-3xl font-bold mr-5 text-red-500"
+                              onClick={() =>
+                                document
+                                  .getElementById(`my_modal_3_${category._id}`)
+                                  .close()
+                              }
+                            >
+                              x
+                            </button>
+                          </form>
+                        </div>
+                        <div>
+                          <h3 className="font-bold text-lg text-center text-black">
+                            Update Product
+                          </h3>
+                        </div>
+                        <ViewSpecialOffers
+                          key={category._id}
+                          offer={category} // Pass the entire category object
+                        />
+                      </div>
+                    </dialog>
                   </td>
                 </tr>
               ))}
@@ -178,10 +221,10 @@ const AdmFeaturedProducts = () => {
           </div>
           <div>
             <h3 className="font-bold text-lg text-center text-black">
-              Add New Product
+              Add New Offer
             </h3>
           </div>
-          <AddFeaturedProduct
+          <AddSpecialOffers
             onSuccess={reloadContents}
             onClose={() => document.getElementById("my_modal_1").close()}
           />
@@ -191,8 +234,7 @@ const AdmFeaturedProducts = () => {
   );
 };
 
-export default AdmFeaturedProducts;
-
+export default AdmSpecialOffers;
 // Sweet Alerts
 
 const showSuccessAlert = (title, text) => {
