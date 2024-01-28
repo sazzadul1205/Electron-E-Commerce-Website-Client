@@ -18,6 +18,9 @@ const Featured = () => {
     return <Loader />;
   }
 
+  // Display a maximum of 5 products
+  const limitedFeaturedCategories = featuredCategories.slice(0, 5);
+
   return (
     <div className="bg-gray-200 pb-5">
       <Title
@@ -27,8 +30,8 @@ const Featured = () => {
         }
       ></Title>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 mx-[200px] mt-5">
-        {featuredCategories.map((category) => (
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 lg:max-w-[1200px] lg:mx-auto mt-5">
+        {limitedFeaturedCategories.map((category) => (
           <div key={category.id} className="">
             <button className="bg-gray-300 p-5 rounded-xl">
               <img

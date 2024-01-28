@@ -19,7 +19,7 @@ const SpecialOffers = () => {
   }
 
   return (
-    <div className="mx-[200px] pb-5">
+    <div className="max-w-[1200px] mx-auto pb-5">
       <Title
         title={"Special Offers or Promotions"}
         subtitle={

@@ -32,7 +32,7 @@ const NewArrivals = () => {
         subtitle={"Discover the latest products in our inventory."}
       />
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4 md:px-8 mt-6 mx-[200px] pb-5">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4 md:px-8 mt-6 max-w-[1200px] mx-auto pb-5">
         {randomNewArrivals.map((product) => (
           <div
             key={product.id}
@@ -56,12 +56,12 @@ const NewArrivals = () => {
             <div className="flex items-center mb-2">
               <span className="text-yellow-500">
                 <Rating
-                  style={{ maxWidth: 180 }}
+                  style={{ maxWidth: 120 }}
                   value={product.rating}
                   readOnly
                 />
               </span>
-              <span className="ml-2 text-gray-500">
+              <span className="ml-2 text-gray-500 text-sm">
                 ({product.reviews} reviews)
               </span>
             </div>

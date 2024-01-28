@@ -16,7 +16,7 @@ const ContactInformation = () => {
 
   return (
     <div className="bg-gray-100 py-12">
-      <div className="container mx-auto">
+      <div className="container mx-auto max-w-[1200px]">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Contact Details */}
           <div className="bg-blue-200 p-6 rounded-lg shadow-md text-black">

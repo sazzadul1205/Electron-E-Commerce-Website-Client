@@ -4,14 +4,15 @@ import AdmFeaturedProducts from "./AdmFeaturedProducts/AdmFeaturedProducts";
 
 const HomePage = () => {
   return (
-    <div>
+    <div className="">
+      <h1 className="my-10 text-center text-3xl font-bold text-black">Home Page Contents</h1>
       <Tabs>
-        <TabList style={{ color: "black" }}>
-          <Tab style={{ background: "#16c2f7", borderBottom: "1px solid #ccc" }}>Featured Products</Tab>
-          <Tab style={{ background: "#210eeb", borderBottom: "1px solid #ccc" }}>Special Offers</Tab>
-          <Tab style={{ background: "#ac1ee7", borderBottom: "1px solid #ccc" }}>Testimonials</Tab>
-          <Tab style={{ background: "#c41e3a", borderBottom: "1px solid #ccc" }}>Blog Sections</Tab>
-          <Tab style={{ background: "#123524", borderBottom: "1px solid #ccc" }}>Featured Brands</Tab>
+        <TabList style={{ color: "black", marginLeft: '10px'}}>
+          <Tab style={{ background: "#16c2f7", borderBottom: "1px solid #ccc", color: 'white' }}>Featured Products</Tab>
+          <Tab style={{ background: "#210eeb", borderBottom: "1px solid #ccc", color: 'white' }}>Special Offers</Tab>
+          <Tab style={{ background: "#ac1ee7", borderBottom: "1px solid #ccc", color: 'white' }}>Testimonials</Tab>
+          <Tab style={{ background: "#c41e3a", borderBottom: "1px solid #ccc", color: 'white' }}>Blog Sections</Tab>
+          <Tab style={{ background: "#123524", borderBottom: "1px solid #ccc", color: 'white' }}>Featured Brands</Tab>
         </TabList>
 
         <TabPanel>

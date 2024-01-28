@@ -65,7 +65,7 @@ const NewsletterSignup = () => {
           "Sign up for our newsletter to receive exclusive offers, updates, and more."
         }
       ></Title>
-      <div className="mx-[200px]">
+      <div className="max-w-[1200px] mx-auto">
         <form onSubmit={handleSubmit(onSubmit)} className="card-body">
           <div className="flex gap-5">
             {/* Name */}

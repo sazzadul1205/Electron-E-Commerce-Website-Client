@@ -44,7 +44,7 @@ const BlogSection = () => {
           clickable: true,
         }}
         modules={[Pagination]}
-        className="mySwiper"
+        className="mySwiper max-w-[1200px]"
       >
         {blogPosts.map((post) => (
           <SwiperSlide key={post.id}>
@@ -55,7 +55,7 @@ const BlogSection = () => {
                 className="mb-4 rounded-md w-full h-60"
               />
               <h3 className="text-xl font-semibold mb-2">{post.title}</h3>
-              <p className="text-gray-700 mb-4 h-10">{post.excerpt}</p>
+              <p className="text-gray-700 mb-4">{post.excerpt}</p>
               <p className="text-gray-500">{post.date}</p>
               <Link to={post.link} className="text-blue-500 hover:underline">
                 Read More

@@ -78,7 +78,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={`navbar fixed z-50 lg:px-[200px] mx-auto py-5 transition-all duration-300 ${
+      className={`navbar fixed z-50 lg:px-[350px] mx-auto py-5 transition-all duration-300 ${
         isTransparent ? "bg-transparent" : "bg-white shadow"
       }`}
     >
@@ -108,7 +108,7 @@ const Navbar = () => {
           {dropdownVisible && (
             <ul
               className="menu menu-sm dropdown-content mt-3 z-[9999] absolute top-full p-2 shadow bg-white rounded-box w-52"
-              onClick={(e) => e.stopPropagation()} // Prevent the dropdown from closing when clicking inside
+              onClick={(e) => e.stopPropagation()} 
             >
               {nav}
             </ul>
@@ -121,7 +121,7 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="flex gap-8 px-1">{nav}</ul>
+        <ul className="flex gap-5 px-1">{nav}</ul>
       </div>
       <div className="navbar-end flex">
         {user ? (

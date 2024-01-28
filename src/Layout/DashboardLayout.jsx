@@ -58,7 +58,7 @@ const DashboardLayout = () => {
 
   return (
     <div className="">
-      <div className="flex mx-[200px] ">
+      <div className="flex max-w-[1200px] mx-auto ">
         {/* Dashboard side bar */}
         <div className="w-80 min-h-screen pt-10 fixed border border-black bg-white">
           <img src={logo} alt="" className="w-52 mx-auto" />

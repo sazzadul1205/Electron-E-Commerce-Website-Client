@@ -42,7 +42,7 @@ const FeaturedBrands = () => {
           spaceBetween={10}
           pagination={{ clickable: true }}
           modules={[Pagination]}
-          className="mySwiper"
+          className="mySwiper max-w-[1200px]"
         >
           {featuredBrands.map((brand) => (
             <SwiperSlide key={brand.id} className="">
