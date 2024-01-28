@@ -2,6 +2,8 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import AdmFeaturedProducts from "./AdmFeaturedProducts/AdmFeaturedProducts";
 import AdmSpecialOffers from "./AdmSpecialOffers/AdmSpecialOffers";
+import AdmTestimonials from "./AdmTestimonials/AdmTestimonials";
+import AdmBlogs from "./AdmBlogs/AdmBlogs";
 
 const HomePage = () => {
   return (
@@ -12,7 +14,7 @@ const HomePage = () => {
           <Tab style={{ background: "#16c2f7", borderBottom: "1px solid #ccc", color: 'white' }}>Featured Products</Tab>
           <Tab style={{ background: "#210eeb", borderBottom: "1px solid #ccc", color: 'white' }}>Special Offers</Tab>
           <Tab style={{ background: "#ac1ee7", borderBottom: "1px solid #ccc", color: 'white' }}>Testimonials</Tab>
-          <Tab style={{ background: "#c41e3a", borderBottom: "1px solid #ccc", color: 'white' }}>Blog Sections</Tab>
+          <Tab style={{ background: "#c41e3a", borderBottom: "1px solid #ccc", color: 'white' }}>Blogs</Tab>
           <Tab style={{ background: "#123524", borderBottom: "1px solid #ccc", color: 'white' }}>Featured Brands</Tab>
         </TabList>
 
@@ -21,6 +23,12 @@ const HomePage = () => {
         </TabPanel>
         <TabPanel>
           <AdmSpecialOffers></AdmSpecialOffers>
+        </TabPanel>
+        <TabPanel>
+          <AdmTestimonials></AdmTestimonials>
+        </TabPanel>
+        <TabPanel>
+          <AdmBlogs></AdmBlogs>
         </TabPanel>
       </Tabs>
     </div>

@@ -79,12 +79,6 @@ const AdmSpecialOffers = () => {
             Search
           </button>
         </div>
-        <button
-          className="p-3 bg-green-500 hover.bg-green-400 text-white rounded-xl"
-          onClick={() => document.getElementById("my_modal_1").showModal()}
-        >
-          + Add Special Offers
-        </button>
       </div>
       <div className="ml-2 text-black">
         <div className="overflow-x-auto">
