@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/title.png";
 import useAuth from "../../Hooks/useAuth";
+import { MdDashboard } from "react-icons/md";
+import { CiLogout, CiShoppingCart } from "react-icons/ci";
 
 const Navbar = () => {
   const [isTransparent, setIsTransparent] = useState(true);
@@ -108,7 +110,7 @@ const Navbar = () => {
           {dropdownVisible && (
             <ul
               className="menu menu-sm dropdown-content mt-3 z-[9999] absolute top-full p-2 shadow bg-white rounded-box w-52"
-              onClick={(e) => e.stopPropagation()} 
+              onClick={(e) => e.stopPropagation()}
             >
               {nav}
             </ul>
@@ -125,12 +127,11 @@ const Navbar = () => {
       </div>
       <div className="navbar-end flex">
         {user ? (
-          <div className="bg-white opacity-90 p-1 flex items-center">
-            <Link to={"/Dashboard"}>
-              <button className="w-28 p-2 bg-blue-200 hover:bg-blue-400 text-black hover:text-black rounded-xl">
-                Dashboard
-              </button>
-            </Link>
+          <div className=" p-1 flex items-center">
+            <div className="relative">
+              <CiShoppingCart className="text-5xl text-black font-bold" />
+              <p className="bg-blue-500 text-center p-1 rounded-full ">5</p>
+            </div>
             <div className="avatar flex-col ml-5 relative">
               <div
                 className="w-14 h-14 rounded-full ring ring-primary mx-auto"
@@ -143,16 +144,25 @@ const Navbar = () => {
                 />
               </div>
               {dropdownVisible && (
-                <div className="dropdown bg-white text-black w-[200px] h-28 p-2 -right-20 absolute top-full rounded-xl shadow-lg opacity-90">
+                <div className="dropdown bg-blue-300 text-black w-[200px]  p-2 -right-20 absolute top-full rounded-xl shadow-lg opacity-90">
                   <ul className="list-none">
                     <li className="text-center mt-2">{user?.displayName}</li>
                     <li>
                       <button
-                        className="w-full p-2 mt-2 bg-blue-500 hover:bg-blue-200 text-white hover:text-black rounded-xl"
+                        className="w-full p-2 mt-2 bg-blue-500 hover:bg-blue-200 text-white hover:text-black rounded-xl flex justify-center gap-2"
                         onClick={handleSignOut}
                       >
+                        <CiLogout className="text-2xl" />
                         Log out
                       </button>
+                    </li>
+                    <li>
+                      <Link to={"/Dashboard"}>
+                        <button className="w-full p-2 bg-blue-500 hover:bg-blue-200 text-white hover:text-black  rounded-xl mt-2 flex justify-center gap-2">
+                          <MdDashboard className="text-2xl" />
+                          Dashboard
+                        </button>
+                      </Link>
                     </li>
                   </ul>
                 </div>

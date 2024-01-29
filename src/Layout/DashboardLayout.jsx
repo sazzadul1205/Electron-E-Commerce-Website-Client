@@ -34,7 +34,7 @@ const DashboardLayout = () => {
   const AdminNavLink = [
     { to: "PHomePageContent", label: "Home Page Contents", color: "blue" },
     { to: "allProducts", label: "All Products", color: "green" },
-    { to: "NewsLetterSubscriber", label: "News Letter Subscribers", color: "purple" },
+    { to: "NewsLetterSubscriber", label: "News Letter Subscribers", color: "yellow" },
   ];
 
   const adminNav = AdminNavLink.map((link) => (
@@ -44,7 +44,7 @@ const DashboardLayout = () => {
         exact
         className={({ isActive }) =>
           `text-lg font-semibold relative group ${
-            isActive ? `bg-${link.color}-500 text-white` : `text-black hover:text-white`
+            isActive ? `bg-${link.color}-500 text-white` : `text-black `
           }`
         }
       >
