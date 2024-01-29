@@ -4,6 +4,7 @@ import AdmFeaturedProducts from "./AdmFeaturedProducts/AdmFeaturedProducts";
 import AdmSpecialOffers from "./AdmSpecialOffers/AdmSpecialOffers";
 import AdmTestimonials from "./AdmTestimonials/AdmTestimonials";
 import AdmBlogs from "./AdmBlogs/AdmBlogs";
+import AdmFeaturedBrands from "./AdmFeaturedBrands/AdmFeaturedBrands";
 
 const HomePage = () => {
   return (
@@ -29,6 +30,9 @@ const HomePage = () => {
         </TabPanel>
         <TabPanel>
           <AdmBlogs></AdmBlogs>
+        </TabPanel>
+        <TabPanel>
+          <AdmFeaturedBrands></AdmFeaturedBrands>
         </TabPanel>
       </Tabs>
     </div>

@@ -18,6 +18,9 @@ const SpecialOffers = () => {
     return <Loader />;
   }
 
+  // Limit to a maximum of 2 offers
+  const limitedSpecialOffers = specialOffers.slice(0, 2);
+
   return (
     <div className="max-w-[1200px] mx-auto pb-5">
       <Title
@@ -28,7 +31,7 @@ const SpecialOffers = () => {
       ></Title>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4 md:px-8">
-        {specialOffers.map((offer) => (
+        {limitedSpecialOffers.map((offer) => (
           <div
             key={offer.id}
             className="bg-white p-6 rounded-lg shadow-md text-black"

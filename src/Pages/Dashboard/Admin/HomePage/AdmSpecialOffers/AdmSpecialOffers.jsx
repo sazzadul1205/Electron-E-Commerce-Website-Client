@@ -6,13 +6,15 @@ import Swal from "sweetalert2";
 import ViewSpecialOffers from "./ViewSpecialOffers/ViewSpecialOffers";
 import AddSpecialOffers from "./AddSpecialOffers/AddSpecialOffers";
 import UpdateSpecialOffers from "./UpdateSpecialOffers/UpdateSpecialOffers";
+import { FaEdit, FaTrash } from "react-icons/fa";
+import { SlScreenDesktop } from "react-icons/sl";
 
 const AdmSpecialOffers = () => {
   const axiosPublic = useAxiosPublic();
   const {
     data: specialOffers = [],
     isLoading,
-    refetch
+    refetch,
   } = useQuery({
     queryKey: ["specialOffers"],
     queryFn: async () => {
@@ -79,6 +81,12 @@ const AdmSpecialOffers = () => {
             Search
           </button>
         </div>
+        <button
+          className="p-3 bg-green-500 hover.bg-green-400 text-white rounded-xl"
+          onClick={() => document.getElementById("my_modal_1").showModal()}
+        >
+          + Add Special Offers
+        </button>
       </div>
       <div className="ml-2 text-black">
         <div className="overflow-x-auto">
@@ -103,14 +111,14 @@ const AdmSpecialOffers = () => {
                   <td>{category.title}</td>
                   <td className="flex gap-2">
                     <button
-                      className="p-3 w-24 bg-yellow-500 hover:bg-yellow-400 text-white rounded-xl"
+                      className="px-5 py-4 bg-yellow-500 hover:bg-yellow-400 text-white rounded-xl"
                       onClick={() =>
                         document
                           .getElementById(`my_modal_2_${category._id}`)
                           .showModal()
                       }
                     >
-                      Update
+                      <FaEdit className="text-lg " />
                     </button>
                     {/* update product modal */}
                     <dialog id={`my_modal_2_${category._id}`} className="modal">
@@ -148,21 +156,21 @@ const AdmSpecialOffers = () => {
                     </dialog>
 
                     <button
-                      className="p-3 w-24 bg-red-500 hover:bg-red-400 text-white rounded-xl"
+                      className="px-5 py-4 bg-red-500 hover:bg-red-400 text-white rounded-xl"
                       onClick={() => handleDelete(category._id, category.title)}
                     >
-                      Delete
+                      <FaTrash className="text-xl"/>
                     </button>
                     {/* View Button */}
                     <button
-                      className="p-3 w-24 bg-green-500 hover:bg-green-400 text-white rounded-xl"
+                      className="px-5 py-4  bg-green-500 hover:bg-green-400 text-white rounded-xl"
                       onClick={() =>
                         document
                           .getElementById(`my_modal_3_${category._id}`)
                           .showModal()
                       }
                     >
-                      View
+                      <SlScreenDesktop className="text-xl"/>
                     </button>
                     {/* view product modal */}
                     <dialog id={`my_modal_3_${category._id}`} className="modal">

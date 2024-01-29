@@ -5,6 +5,7 @@ import useAxiosPublic from "../../../../../Hooks/useAxiosPublic";
 import Loader from "../../../../Components/Loader";
 import AddFeaturedProduct from "./AddFeaturedProduct/AddFeaturedProduct";
 import UpdateFeaturedProducts from "./UpdateFeaturedProducts/UpdateFeaturedProducts";
+import { FaEdit, FaTrash } from "react-icons/fa";
 
 const AdmFeaturedProducts = () => {
   const axiosPublic = useAxiosPublic();
@@ -111,12 +112,14 @@ const AdmFeaturedProducts = () => {
                   <td>{category.title}</td>
                   <td className="flex gap-2">
                     <button
-                      className="p-3 w-24 bg-yellow-500 hover:bg-yellow-400 text-white rounded-xl"
+                      className="px-5 py-3 bg-yellow-500 hover:bg-yellow-400 text-white rounded-xl"
                       onClick={() =>
-                        document.getElementById(`my_modal_2_${category._id}`).showModal()
+                        document
+                          .getElementById(`my_modal_2_${category._id}`)
+                          .showModal()
                       }
                     >
-                      Update
+                      <FaEdit className="text-lg " />
                     </button>
                     {/* update product modal */}
                     <dialog id={`my_modal_2_${category._id}`} className="modal">
@@ -126,7 +129,9 @@ const AdmFeaturedProducts = () => {
                             <button
                               className="text-3xl font-bold mr-5 text-red-500"
                               onClick={() =>
-                                document.getElementById(`my_modal_2_${category._id}`).close()
+                                document
+                                  .getElementById(`my_modal_2_${category._id}`)
+                                  .close()
                               }
                             >
                               x
@@ -143,17 +148,19 @@ const AdmFeaturedProducts = () => {
                           category={category} // Pass the entire category object
                           onSuccess={reloadContents}
                           onClose={() =>
-                            document.getElementById(`my_modal_2_${category._id}`).close()
+                            document
+                              .getElementById(`my_modal_2_${category._id}`)
+                              .close()
                           }
                         />
                       </div>
                     </dialog>
 
                     <button
-                      className="p-3 w-24 bg-red-500 hover:bg-red-400 text-white rounded-xl"
+                      className=" px-5 bg-red-500 hover:bg-red-400 text-white rounded-xl"
                       onClick={() => handleDelete(category._id, category.title)}
                     >
-                      Delete
+                      <FaTrash className="text-xl"/>
                     </button>
                   </td>
                 </tr>

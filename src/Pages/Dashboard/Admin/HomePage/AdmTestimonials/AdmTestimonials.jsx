@@ -4,6 +4,8 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 import Loader from "../../../../Components/Loader";
 import ViewTestimonial from "./ViewTestimonial/ViewTestimonial";
+import { FaTrash } from "react-icons/fa";
+import { SlScreenDesktop } from "react-icons/sl";
 
 const AdmTestimonials = () => {
   const axiosPublic = useAxiosPublic();
@@ -99,23 +101,23 @@ const AdmTestimonials = () => {
                   <td>{testimonial.author}</td>
                   <td className="flex gap-2">
                     <button
-                      className="p-3 w-24 bg-red-500 hover:bg-red-400 text-white rounded-xl"
+                      className="px-5 py-4 bg-red-500 hover:bg-red-400 text-white rounded-xl"
                       onClick={() =>
                         handleDelete(testimonial._id, testimonial.author)
                       }
                     >
-                      Delete
+                      <FaTrash className="text-xl"/>
                     </button>
                     {/* View Button */}
                     <button
-                      className="p-3 w-24 bg-green-500 hover:bg-green-400 text-white rounded-xl"
+                      className="px-5 py-4 bg-green-500 hover:bg-green-400 text-white rounded-xl"
                       onClick={() =>
                         document
                           .getElementById(`my_modal_2_${testimonial._id}`)
                           .showModal()
                       }
                     >
-                      View
+                      <SlScreenDesktop className="text-xl"/>
                     </button>
                     {/* view testimonial modal */}
                     <dialog

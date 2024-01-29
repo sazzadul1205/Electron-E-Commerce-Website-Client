@@ -1,60 +1,51 @@
+import Swal from "sweetalert2";
+import Loader from "../../../../Components/Loader";
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../../../Hooks/useAxiosPublic";
-import { useState } from "react";
-import Loader from "../../../../Components/Loader";
-import Swal from "sweetalert2";
-import ViewBlogs from "./ViewBlogs/ViewBlogs";
-import AddBlogs from "./AddBlogs/AddBlogs";
+import AddFeaturedBrands from "./AddFeaturedBrands/AddFeaturedBrands";
 import { FaTrash } from "react-icons/fa";
-import { SlScreenDesktop } from "react-icons/sl";
 
-const AdmBlogs = () => {
+const AdmFeaturedBrands = () => {
   const axiosPublic = useAxiosPublic();
   const {
-    data: blogPosts = [],
+    data: featuredBrands = [],
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["blogPosts"],
+    queryKey: ["featuredBrands"],
     queryFn: async () => {
-      const res = await axiosPublic.get("/BlogPosts");
+      const res = await axiosPublic.get("/featuredBrands");
       return res.data;
     },
   });
 
-  const [searchTitle, setSearchTitle] = useState("");
+  const [searchName, setSearchName] = useState("");
 
-  const filteredBlogPosts = blogPosts.filter((post) =>
-    post.title.toLowerCase().includes(searchTitle.toLowerCase())
+  const filteredBrands = featuredBrands.filter((brand) =>
+    brand.name.toLowerCase().includes(searchName.toLowerCase())
   );
 
-  const handleDelete = async (postId, postTitle) => {
+  const handleDelete = async (brandId, brandName) => {
     try {
       const result = await showConfirmationAlert(
         "Are you sure?",
-        `You are about to delete the blog post "${postTitle}". This action cannot be undone.`,
+        `You are about to delete the brand "${brandName}". This action cannot be undone.`,
         "Delete"
       );
 
       if (result.isConfirmed) {
-        await axiosPublic.delete(`/BlogPosts/${postId}`);
+        await axiosPublic.delete(`/featuredBrands/${brandId}`);
         refetch();
-        showSuccessAlert(
-          "Blog Post Deleted!",
-          "Blog post deleted successfully."
-        );
+        showSuccessAlert("Brand Deleted!", "Brand deleted successfully.");
       }
     } catch (error) {
       console.error(error);
       showErrorAlert(
-        "Failed to Delete Blog Post",
-        "An error occurred while deleting the blog post."
+        "Failed to Delete Brand",
+        "An error occurred while deleting the brand."
       );
     }
-  };
-
-  const openViewModal = (postId) => {
-    document.getElementById(`my_modal_${postId}`).showModal();
   };
   const reloadContents = () => {
     refetch();
@@ -66,7 +57,7 @@ const AdmBlogs = () => {
   return (
     <div>
       <h1 className="my-10 text-center text-3xl font-bold text-blue-500">
-        Blog Posts
+        Featured Brands
       </h1>
       <div className="flex justify-between items-center mb-4">
         <div className="w-1/5 ml-2 flex">
@@ -74,12 +65,12 @@ const AdmBlogs = () => {
             type="text"
             placeholder="Search..."
             className="p-2 border border-gray-300 rounded-l-md w-52"
-            value={searchTitle}
-            onChange={(e) => setSearchTitle(e.target.value)}
+            value={searchName}
+            onChange={(e) => setSearchName(e.target.value)}
           />
           <button
             className="p-3 bg-green-500 hover:bg-green-400 text-white rounded-r-xl"
-            onClick={() => setSearchTitle(searchTitle)}
+            onClick={() => setSearchName(searchName)}
           >
             Search
           </button>
@@ -97,62 +88,28 @@ const AdmBlogs = () => {
             <thead>
               <tr className="text-black text-[18px] font-semibold">
                 <th>Image</th>
-                <th>Title</th>
-                <th>Date</th>
+                <th>Name</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              {filteredBlogPosts.map((post) => (
-                <tr key={post._id}>
+              {filteredBrands.map((brand) => (
+                <tr key={brand._id}>
                   <td>
                     <img
-                      src={post.image}
-                      alt={`${post.title}'s Cover`}
+                      src={brand.image}
+                      alt={`${brand.name}'s Logo`}
                       className="w-12 h-12"
                     />
                   </td>
-                  <td>{post.title}</td>
-                  <td>{post.date}</td>
+                  <td>{brand.name}</td>
                   <td className="flex gap-2">
                     <button
                       className="px-5 py-4 bg-red-500 hover:bg-red-400 text-white rounded-xl"
-                      onClick={() => handleDelete(post._id, post.title)}
+                      onClick={() => handleDelete(brand._id, brand.name)}
                     >
                       <FaTrash className="text-xl"/>
                     </button>
-                    {/* View Button */}
-                    <button
-                      className="px-5 py-4 bg-green-500 hover:bg-green-400 text-white rounded-xl"
-                      onClick={() => openViewModal(post._id)}
-                    >
-                      <SlScreenDesktop className="text-xl"/>
-                    </button>
-                    {/* view blog post modal */}
-                    <dialog id={`my_modal_${post._id}`} className="modal">
-                      <div className="modal-box bg-white">
-                        <div className="modal-action">
-                          <form method="dialog">
-                            <button
-                              className="text-3xl font-bold mr-5 text-red-500"
-                              onClick={() =>
-                                document
-                                  .getElementById(`my_modal_${post._id}`)
-                                  .close()
-                              }
-                            >
-                              x
-                            </button>
-                          </form>
-                        </div>
-                        <div>
-                          <h3 className="font-bold text-lg text-center text-black">
-                            View Blog Post
-                          </h3>
-                          <ViewBlogs post={post} />
-                        </div>
-                      </div>
-                    </dialog>
                   </td>
                 </tr>
               ))}
@@ -179,7 +136,7 @@ const AdmBlogs = () => {
               Add New Product
             </h3>
           </div>
-          <AddBlogs
+          <AddFeaturedBrands
             onSuccess={reloadContents}
             onClose={() => document.getElementById("my_modal_1").close()}
           />
@@ -189,7 +146,7 @@ const AdmBlogs = () => {
   );
 };
 
-export default AdmBlogs;
+export default AdmFeaturedBrands;
 
 // Sweet Alerts
 const showSuccessAlert = (title, text) => {
