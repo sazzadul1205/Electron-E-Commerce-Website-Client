@@ -40,6 +40,7 @@ const SignUp = () => {
     const UserData = {
       name: data.name,
       email: data.email,
+      password:data.password,
       role: "member",
       creationTime: formattedDateTime,
     };
@@ -188,18 +189,12 @@ const SignUp = () => {
                   Password must be below 20 characters
                 </p>
               )}
-              {errors.password?.type === "pattern" && (
-                <p className="text-red-600" role="alert">
-                  Password must have at least one upper case, one lower case,
-                  special characters, and a number
-                </p>
-              )}
             </div>
             <div className="form-control mt-6 text-white">
               <input
                 className={`w-full p-3 bg-blue-500 hover:bg-blue-400 rounded-xl mt-5`}
                 type="submit"
-                value="Log In"
+                value="Sign Up"
               />
 
               <h1 className="font-normal text-md text-blue-500">

@@ -8,6 +8,8 @@ import HomePage from "../Pages/Dashboard/Admin/HomePage/HomePage";
 import AdmProducts from "../Pages/Dashboard/Admin/AdmProducts/AdmProducts";
 import ViewNewsLetterSubscribers from "../Pages/Dashboard/Admin/ViewNewsLetterSubscribers/ViewNewsLetterSubscribers";
 import ProductsPage from "../Pages/ProductsPage/ProductsPage";
+import ViewAllUsers from "../Pages/Dashboard/Admin/ViewAllUsers/ViewAllUsers";
+import Cart from "../Pages/Cart/Cart";
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +24,10 @@ export const router = createBrowserRouter([
         path: "/product",
         element: <ProductsPage></ProductsPage>
       },
+      {
+        path: "/cart",
+        element: <Cart></Cart>
+      },
     ],
   },
   {
@@ -30,7 +36,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/SignUp",
-    element: <SignUp></SignUp>
+    element:<SignUp></SignUp>
   },
   {
     path: "/Dashboard",
@@ -47,6 +53,10 @@ export const router = createBrowserRouter([
       {
         path:"NewsLetterSubscriber",
         element: <ViewNewsLetterSubscribers></ViewNewsLetterSubscribers>
+      },
+      {
+        path:"ViewAllUsers",
+        element: <ViewAllUsers></ViewAllUsers>
       },
     ]
   }

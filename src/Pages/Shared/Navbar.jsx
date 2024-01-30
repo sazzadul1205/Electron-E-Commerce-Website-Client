@@ -128,10 +128,13 @@ const Navbar = () => {
       <div className="navbar-end flex">
         {user ? (
           <div className=" p-1 flex items-center">
-            <div className="relative">
+            <button className="relative">
               <CiShoppingCart className="text-5xl text-black font-bold" />
-              <p className="bg-blue-500 text-center p-1 rounded-full ">5</p>
-            </div>
+              <p className="bg-blue-500 text-sm p-1 rounded-full text-white absolute -top-1 -right-1">
+                5
+              </p>
+            </button>
+
             <div className="avatar flex-col ml-5 relative">
               <div
                 className="w-14 h-14 rounded-full ring ring-primary mx-auto"

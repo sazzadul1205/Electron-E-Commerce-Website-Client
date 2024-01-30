@@ -5,9 +5,22 @@ import { CiShoppingCart } from "react-icons/ci";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../../Components/Loader";
+import Swal from "sweetalert2";
+import useAuth from "../../../Hooks/useAuth";
 
 const NewArrivals = () => {
   const axiosPublic = useAxiosPublic();
+  const { user } = useAuth();
+
+  const currentDate = new Date();
+  const formattedDateTime = currentDate.toLocaleString("en-US", {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  });
 
   const { data: productsNew = [], isLoading } = useQuery({
     queryKey: ["productsNew"],
@@ -18,12 +31,50 @@ const NewArrivals = () => {
   });
 
   if (isLoading) {
-    return <Loader/>
+    return <Loader />;
   }
 
   const shuffledProducts = productsNew.sort(() => Math.random() - 0.5);
 
   const randomNewArrivals = shuffledProducts.slice(0, 4);
+
+  const handleAddToCart = async (product) => {
+    try {
+      if (!user) {
+        Swal.fire({
+          icon: "warning",
+          title: "Login Required",
+          text: "Please login first to add items to your cart.",
+          confirmButtonText: "leave",
+        });
+        return;
+      }
+      const ChosenProduct = {
+        name: product.name,
+        price: product.price,
+        Buyer: user.email,
+        BuyingDate: formattedDateTime,
+      };
+      // Make the API call to add the product to the cart
+      await axiosPublic.post("/publicCart", ChosenProduct);
+
+      // Show success message using SweetAlert
+      Swal.fire({
+        icon: "success",
+        title: `${product.name} added to cart successfully!`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } catch (error) {
+      // Handle error and show error message using SweetAlert
+      console.error("Error adding to cart:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong! Please try again.",
+      });
+    }
+  };
 
   return (
     <div className="bg-gray-200 pb-5">
@@ -66,7 +117,10 @@ const NewArrivals = () => {
               </span>
             </div>
             <div className="flex justify-center mt-2">
-              <button className="bg-red-500 hover:bg-red-400 text-white rounded-lg w-full p-2 flex items-center justify-center">
+              <button
+                className="bg-red-500 hover:bg-red-400 text-white rounded-lg w-full p-2 flex items-center justify-center"
+                onClick={() => handleAddToCart(product)}
+              >
                 <h1 className="text-center">Add to Cart</h1>
                 <CiShoppingCart className="text-2xl ml-2" />
               </button>

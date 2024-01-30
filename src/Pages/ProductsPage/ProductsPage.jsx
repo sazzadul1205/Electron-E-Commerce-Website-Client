@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import Loader from "../Components/Loader";
 import ViewProducts from "../Dashboard/Admin/AdmProducts/ViewProducts/ViewProducts";
 import { SlScreenDesktop } from "react-icons/sl";
+import { Rating } from "@smastrom/react-rating";
 
 const ProductsPage = () => {
   const axiosPublic = useAxiosPublic();
@@ -42,7 +43,10 @@ const ProductsPage = () => {
     });
 
   const numberOfPages = Math.ceil(productsCount.count / ProductPerPage);
-  const pages = [...Array(numberOfPages).keys()];
+  const pages = Array.from(
+    { length: Math.max(0, numberOfPages) },
+    (_, index) => index
+  );
 
   // Get unique brands and product types for dynamic options
   const uniqueBrands = [
@@ -177,7 +181,18 @@ const ProductsPage = () => {
               <div className="card-body">
                 <h2 className="card-title">{product.name}</h2>
                 <p>{product.description}</p>
-
+                <div className="flex items-center mb-2">
+                  <span className="text-yellow-500">
+                    <Rating
+                      style={{ maxWidth: 120 }}
+                      value={product.rating}
+                      readOnly
+                    />
+                  </span>
+                  <span className="ml-2 text-gray-500 text-sm">
+                    ({product.reviews} reviews)
+                  </span>
+                </div>
                 <p className="text-red-500">Price: {product.price}$</p>
                 <div className="card-actions justify-between">
                   {/* View Button */}

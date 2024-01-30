@@ -5,9 +5,22 @@ import { CiShoppingCart } from "react-icons/ci";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Loader from "../../Components/Loader";
+import Swal from "sweetalert2";
+import useAuth from "../../../Hooks/useAuth";
 
 const BestSellers = () => {
   const axiosPublic = useAxiosPublic();
+  const { user } = useAuth();
+
+  const currentDate = new Date();
+  const formattedDateTime = currentDate.toLocaleString("en-US", {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  });
 
   const { data: productBest = [], isLoading } = useQuery({
     queryKey: ["productBest"],
@@ -22,9 +35,45 @@ const BestSellers = () => {
   }
 
   const shuffledBestSellers = productBest.sort(() => Math.random() - 0.5);
-
-  // Take the first 5 elements after shuffling
   const randomBestSellers = shuffledBestSellers.slice(0, 4);
+
+  const handleAddToCart = async (product) => {
+    try {
+      if (!user) {
+        Swal.fire({
+          icon: "warning",
+          title: "Login Required",
+          text: "Please login first to add items to your cart.",
+          confirmButtonText: "leave",
+        });
+        return;
+      }
+
+      const chosenProduct = {
+        name: product.name,
+        image: product.image,
+        price: product.price,
+        buyer: user.email,
+        buyingDate: formattedDateTime,
+      };
+
+      await axiosPublic.post("/publicCart", chosenProduct);
+
+      Swal.fire({
+        icon: "success",
+        title: `${product.name} added to cart successfully!`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong! Please try again.",
+      });
+    }
+  };
 
   return (
     <div className="pb-5">
@@ -55,7 +104,7 @@ const BestSellers = () => {
               ${parseFloat(product.price).toFixed(2)}
             </p>
             <div className="flex items-center mb-2">
-            <span className="text-yellow-500">
+              <span className="text-yellow-500">
                 <Rating
                   style={{ maxWidth: 120 }}
                   value={product.rating}
@@ -67,7 +116,10 @@ const BestSellers = () => {
               </span>
             </div>
             <div className="flex justify-center mt-2">
-              <button className="bg-red-500 hover:bg-red-400 text-white rounded-lg w-full p-2 flex items-center justify-center">
+              <button
+                className="bg-red-500 hover:bg-red-400 text-white rounded-lg w-full p-2 flex items-center justify-center"
+                onClick={() => handleAddToCart(product)}
+              >
                 <h1 className="text-center">Add to Cart</h1>
                 <CiShoppingCart className="text-2xl ml-2" />
               </button>
