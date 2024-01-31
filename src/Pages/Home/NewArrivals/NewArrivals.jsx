@@ -51,9 +51,10 @@ const NewArrivals = () => {
       }
       const ChosenProduct = {
         name: product.name,
+        image: product.image,
         price: product.price,
-        Buyer: user.email,
-        BuyingDate: formattedDateTime,
+        buyer: user.email,
+        buyingDate: formattedDateTime,
       };
       // Make the API call to add the product to the cart
       await axiosPublic.post("/publicCart", ChosenProduct);

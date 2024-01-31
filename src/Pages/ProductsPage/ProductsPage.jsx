@@ -5,15 +5,29 @@ import Loader from "../Components/Loader";
 import ViewProducts from "../Dashboard/Admin/AdmProducts/ViewProducts/ViewProducts";
 import { SlScreenDesktop } from "react-icons/sl";
 import { Rating } from "@smastrom/react-rating";
+import Swal from "sweetalert2";
+import useAuth from "../../Hooks/useAuth";
+import { CiShoppingCart } from "react-icons/ci";
 
 const ProductsPage = () => {
   const axiosPublic = useAxiosPublic();
+  const { user } = useAuth();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedBrand, setSelectedBrand] = useState("");
   const [selectedArrival, setSelectedArrival] = useState("");
   const [selectedProductType, setSelectedProductType] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const ProductPerPage = 12;
+
+  const currentDate = new Date();
+  const formattedDateTime = currentDate.toLocaleString("en-US", {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  });
 
   const {
     data: PublicProducts = [],
@@ -70,6 +84,44 @@ const ProductsPage = () => {
   if (isLoading && isLoadingProductsCount) {
     return <Loader />;
   }
+
+  const handleAddToCart = async (product) => {
+    try {
+      if (!user) {
+        Swal.fire({
+          icon: "warning",
+          title: "Login Required",
+          text: "Please login first to add items to your cart.",
+          confirmButtonText: "leave",
+        });
+        return;
+      }
+
+      const chosenProduct = {
+        name: product.name,
+        image: product.image,
+        price: product.price,
+        buyer: user.email,
+        buyingDate: formattedDateTime,
+      };
+
+      await axiosPublic.post("/publicCart", chosenProduct);
+
+      Swal.fire({
+        icon: "success",
+        title: `${product.name} added to cart successfully!`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong! Please try again.",
+      });
+    }
+  };
 
   return (
     <div className="container mx-auto pt-32 ">
@@ -233,8 +285,12 @@ const ProductsPage = () => {
                       />
                     </div>
                   </dialog>
-                  <button className="bg-red-500 hover:bg-red-400 p-3 rounded-xl text-white px-8">
-                    Add To cart
+                  <button
+                    className="bg-red-500 hover:bg-red-400 p-3 rounded-xl text-white px-8 flex"
+                    onClick={() => handleAddToCart(product)}
+                  >
+                    <h1 className="text-center">Add to Cart</h1>
+                    <CiShoppingCart className="text-2xl ml-2" />
                   </button>
                 </div>
               </div>
