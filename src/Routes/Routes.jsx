@@ -10,6 +10,9 @@ import ViewNewsLetterSubscribers from "../Pages/Dashboard/Admin/ViewNewsLetterSu
 import ProductsPage from "../Pages/ProductsPage/ProductsPage";
 import ViewAllUsers from "../Pages/Dashboard/Admin/ViewAllUsers/ViewAllUsers";
 import Cart from "../Pages/Cart/Cart";
+import ViewAllOrders from "../Pages/Dashboard/Admin/ViewAllOrders/ViewAllOrders";
+import MyOrders from "../Pages/Dashboard/Users/MyOrders/MyOrders";
+import AdmStatistics from "../Pages/Dashboard/Admin/AdmStatistics/AdmStatistics";
 
 export const router = createBrowserRouter([
   {
@@ -57,6 +60,18 @@ export const router = createBrowserRouter([
       {
         path:"ViewAllUsers",
         element: <ViewAllUsers></ViewAllUsers>
+      },
+      {
+        path:"AllOrders",
+        element: <ViewAllOrders></ViewAllOrders>
+      },
+      {
+        path:"MyOrders",
+        element: <MyOrders></MyOrders>
+      },
+      {
+        path:"AdmStatistics",
+        element: <AdmStatistics></AdmStatistics>
       },
     ]
   }

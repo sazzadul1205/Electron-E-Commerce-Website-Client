@@ -36,6 +36,9 @@ const DashboardLayout = () => {
     { to: "allProducts", label: "All Products", color: "green" },
     { to: "NewsLetterSubscriber", label: "News Letter Subscribers", color: "yellow" },
     { to: "ViewAllUsers", label: "View All Users", color: "blue" },
+    { to: "MyOrders", label: "My Order", color: "green" },
+    { to: "AllOrders", label: "All Order", color: "yellow" },
+    { to: "AdmStatistics", label: "Admin Statistics", color: "yellow" },
   ];
 
   const adminNav = AdminNavLink.map((link) => (
