@@ -13,6 +13,8 @@
     "@smastrom/react-rating": "^1.4.0",
     "@tanstack/react-query": "^5.17.19",
     "axios": "^1.6.7",
+    "d3-scale": "^4.0.2",
+    "d3-scale-chromatic": "^3.0.0",
     "firebase": "^10.7.2",
     "framer-motion": "^10.18.0",
     "localforage": "^1.10.0",

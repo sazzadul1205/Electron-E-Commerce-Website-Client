@@ -13,6 +13,13 @@ import Cart from "../Pages/Cart/Cart";
 import ViewAllOrders from "../Pages/Dashboard/Admin/ViewAllOrders/ViewAllOrders";
 import MyOrders from "../Pages/Dashboard/Users/MyOrders/MyOrders";
 import AdmStatistics from "../Pages/Dashboard/Admin/AdmStatistics/AdmStatistics";
+import FAQPage from "../Pages/FAQPage/FAQPage";
+import AdmFAQs from "../Pages/Dashboard/Admin/AdmFAQs/AdmFAQs";
+import BlogsPage from "../Pages/BlogsPage/BlogsPage";
+import IndividualBlog from "../Pages/BlogsPage/IndividualBlog/IndividualBlog";
+import AdmBlogs from "../Pages/Dashboard/Admin/HomePage/AdmBlogs/AdmBlogs";
+import AboutUsPage from "../Pages/AboutUsPage/AboutUsPage";
+import ContactUsPage from "../Pages/ContactUsPage/ContactUsPage";
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +37,27 @@ export const router = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart></Cart>
+      },
+      {
+        path: "/fAQ",
+        element: <FAQPage></FAQPage>
+      },
+      {
+        path: "/Blog",
+        element: <BlogsPage></BlogsPage>
+      },
+      {
+        path: "/Blog/:id",
+        element: <IndividualBlog></IndividualBlog>,
+        loader: ({ params }) => fetch(`http://localhost:5000/BlogPosts/${params.id}`)
+      },
+      {
+        path: "/AboutUs",
+        element: <AboutUsPage></AboutUsPage>
+      },
+      {
+        path: "/ContactUs",
+        element: <ContactUsPage></ContactUsPage>
       },
     ],
   },
@@ -73,6 +101,14 @@ export const router = createBrowserRouter([
         path:"AdmStatistics",
         element: <AdmStatistics></AdmStatistics>
       },
+      {
+        path:"AdmFAQs",
+        element: <AdmFAQs></AdmFAQs>
+      },
+      {
+        path:"AdmBlogs",
+        element:<AdmBlogs></AdmBlogs>
+      }
     ]
   }
 ]);

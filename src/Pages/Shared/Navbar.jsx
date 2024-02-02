@@ -40,8 +40,8 @@ const Navbar = () => {
     { to: "/Category", label: "Category" },
     { to: "/Shopping", label: "Shopping" },
     { to: "/ContactUs", label: "Contact Us" },
-    { to: "/About Us", label: "About Us" },
-    { to: "/FAQs", label: "FAQ" },
+    { to: "/AboutUs", label: "About Us" },
+    { to: "/FAQ", label: "FAQ" },
     { to: "/Blog", label: "Blog" },
   ];
 

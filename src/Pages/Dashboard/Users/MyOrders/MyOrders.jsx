@@ -113,7 +113,7 @@ const MyOrders = () => {
                     <td>{order.orderDate}</td>
                     <td>{order.orderState}</td>
                     <td>
-                      {order.orderState === "ordered" && (
+                      {order.orderState === "Ordered" && (
                         <>
                           <button
                             onClick={() => openModal(order._id)}

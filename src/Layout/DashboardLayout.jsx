@@ -9,7 +9,7 @@ const DashboardLayout = () => {
     { to: "/Category", label: "Category" },
     { to: "/Shopping", label: "Shopping" },
     { to: "/ContactUs", label: "Contact Us" },
-    { to: "/About Us", label: "About Us" },
+    { to: "/AboutUs", label: "About Us" },
     { to: "/FAQs", label: "FAQ" },
     { to: "/Blog", label: "Blog" },
   ];
@@ -38,7 +38,9 @@ const DashboardLayout = () => {
     { to: "ViewAllUsers", label: "View All Users", color: "blue" },
     { to: "MyOrders", label: "My Order", color: "green" },
     { to: "AllOrders", label: "All Order", color: "yellow" },
-    { to: "AdmStatistics", label: "Admin Statistics", color: "yellow" },
+    { to: "AdmStatistics", label: "Admin Statistics", color: "green" },
+    { to: "AdmFAQs", label: "Admin FAQ", color: "blue" },
+    { to: "AdmBlogs", label: "Admin Blogs", color: "yellow" },
   ];
 
   const adminNav = AdminNavLink.map((link) => (

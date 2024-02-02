@@ -93,7 +93,7 @@ const Cart = () => {
           image: item.image,
         })),
         orderDate: formattedDateTime,
-        orderState: "ordered",
+        orderState: "Ordered",
       };
 
       // Make a POST request to create a new order
