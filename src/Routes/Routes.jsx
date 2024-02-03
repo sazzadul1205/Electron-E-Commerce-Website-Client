@@ -20,11 +20,14 @@ import IndividualBlog from "../Pages/BlogsPage/IndividualBlog/IndividualBlog";
 import AdmBlogs from "../Pages/Dashboard/Admin/HomePage/AdmBlogs/AdmBlogs";
 import AboutUsPage from "../Pages/AboutUsPage/AboutUsPage";
 import ContactUsPage from "../Pages/ContactUsPage/ContactUsPage";
+import MyBlogs from "../Pages/Dashboard/Users/MyBlogs/MyBlogs";
+import NotFoundPage from "../Pages/NotFoundPage/NotFoundPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <PublicLayout></PublicLayout>,
+    errorElement: <NotFoundPage></NotFoundPage>,
     children: [
       {
         path: "/",
@@ -108,7 +111,11 @@ export const router = createBrowserRouter([
       {
         path:"AdmBlogs",
         element:<AdmBlogs></AdmBlogs>
-      }
+      },
+      {
+        path:"MyBlogs",
+        element:<MyBlogs></MyBlogs>
+      },
     ]
   }
 ]);

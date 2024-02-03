@@ -1,13 +1,15 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { useEffect } from "react";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import logo from "../assets/title.png";
 
 const DashboardLayout = () => {
+  const navigate = useNavigate();
+
   // Public Links
   const navLinks = [
     { to: "/", label: "Home" },
     { to: "/Product", label: "Product" },
     { to: "/Category", label: "Category" },
-    { to: "/Shopping", label: "Shopping" },
     { to: "/ContactUs", label: "Contact Us" },
     { to: "/AboutUs", label: "About Us" },
     { to: "/FAQs", label: "FAQ" },
@@ -41,6 +43,7 @@ const DashboardLayout = () => {
     { to: "AdmStatistics", label: "Admin Statistics", color: "green" },
     { to: "AdmFAQs", label: "Admin FAQ", color: "blue" },
     { to: "AdmBlogs", label: "Admin Blogs", color: "yellow" },
+    { to: "MyBlogs", label: "My Blogs", color: "green" },
   ];
 
   const adminNav = AdminNavLink.map((link) => (
@@ -61,6 +64,11 @@ const DashboardLayout = () => {
       </NavLink>
     </li>
   ));
+
+  useEffect(() => {
+    // Navigate to the PHomePageContent when the component mounts
+    navigate("/Dashboard/PHomePageContent");
+  }, [navigate]);
 
   return (
     <div className="">
