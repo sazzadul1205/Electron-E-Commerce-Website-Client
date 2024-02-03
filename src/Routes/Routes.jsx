@@ -22,6 +22,7 @@ import AboutUsPage from "../Pages/AboutUsPage/AboutUsPage";
 import ContactUsPage from "../Pages/ContactUsPage/ContactUsPage";
 import MyBlogs from "../Pages/Dashboard/Users/MyBlogs/MyBlogs";
 import NotFoundPage from "../Pages/NotFoundPage/NotFoundPage";
+import PrivateRoutes from "./PrivateRoutes";
 
 export const router = createBrowserRouter([
   {
@@ -35,87 +36,133 @@ export const router = createBrowserRouter([
       },
       {
         path: "/product",
-        element: <ProductsPage></ProductsPage>
+        element: <ProductsPage></ProductsPage>,
       },
       {
         path: "/cart",
-        element: <Cart></Cart>
+        element: <Cart></Cart>,
       },
       {
         path: "/fAQ",
-        element: <FAQPage></FAQPage>
+        element: <FAQPage></FAQPage>,
       },
       {
         path: "/Blog",
-        element: <BlogsPage></BlogsPage>
+        element: <BlogsPage></BlogsPage>,
       },
       {
         path: "/Blog/:id",
         element: <IndividualBlog></IndividualBlog>,
-        loader: ({ params }) => fetch(`http://localhost:5000/BlogPosts/${params.id}`)
+        loader: ({ params }) =>
+          fetch(`https://electron-e-commerce-website-server.vercel.app/BlogPosts/${params.id}`),
       },
       {
         path: "/AboutUs",
-        element: <AboutUsPage></AboutUsPage>
+        element: <AboutUsPage></AboutUsPage>,
       },
       {
         path: "/ContactUs",
-        element: <ContactUsPage></ContactUsPage>
+        element: <ContactUsPage></ContactUsPage>,
       },
     ],
   },
   {
     path: "/login",
-    element: <Login></Login>
+    element: <Login></Login>,
   },
   {
     path: "/SignUp",
-    element:<SignUp></SignUp>
+    element: <SignUp></SignUp>,
   },
   {
     path: "/Dashboard",
-    element: <DashboardLayout></DashboardLayout>,
-    children:[
+    element: (
+      <PrivateRoutes>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoutes>
+    ),
+    children: [
       {
-        path:"PHomePageContent",
-        element: <HomePage></HomePage>
+        path: "PHomePageContent",
+        element: (
+          <PrivateRoutes>
+            <HomePage></HomePage>
+          </PrivateRoutes>
+        ),
       },
       {
-        path:"allProducts",
-        element: <AdmProducts></AdmProducts>
+        path: "allProducts",
+        element: (
+          <PrivateRoutes>
+            <AdmProducts></AdmProducts>
+          </PrivateRoutes>
+        ),
       },
       {
-        path:"NewsLetterSubscriber",
-        element: <ViewNewsLetterSubscribers></ViewNewsLetterSubscribers>
+        path: "NewsLetterSubscriber",
+        element: (
+          <PrivateRoutes>
+            <ViewNewsLetterSubscribers></ViewNewsLetterSubscribers>
+          </PrivateRoutes>
+        ),
       },
       {
-        path:"ViewAllUsers",
-        element: <ViewAllUsers></ViewAllUsers>
+        path: "ViewAllUsers",
+        element: (
+          <PrivateRoutes>
+            <ViewAllUsers></ViewAllUsers>
+          </PrivateRoutes>
+        ),
       },
       {
-        path:"AllOrders",
-        element: <ViewAllOrders></ViewAllOrders>
+        path: "AllOrders",
+        element: (
+          <PrivateRoutes>
+            <ViewAllOrders></ViewAllOrders>
+          </PrivateRoutes>
+        ),
       },
       {
-        path:"MyOrders",
-        element: <MyOrders></MyOrders>
+        path: "MyOrders",
+        element: (
+          <PrivateRoutes>
+            <MyOrders></MyOrders>
+          </PrivateRoutes>
+        ),
       },
       {
-        path:"AdmStatistics",
-        element: <AdmStatistics></AdmStatistics>
+        path: "AdmStatistics",
+        element: (
+          <PrivateRoutes>
+            <AdmStatistics></AdmStatistics>
+          </PrivateRoutes>
+        ),
       },
       {
-        path:"AdmFAQs",
-        element: <AdmFAQs></AdmFAQs>
+        path: "AdmFAQs",
+        element: (
+          <PrivateRoutes>
+            <AdmFAQs></AdmFAQs>
+          </PrivateRoutes>
+        ),
       },
       {
-        path:"AdmBlogs",
-        element:<AdmBlogs></AdmBlogs>
+        path: "AdmBlogs",
+        element: (
+          <PrivateRoutes>
+            <AdmBlogs></AdmBlogs>
+          </PrivateRoutes>
+        ),
       },
       {
-        path:"MyBlogs",
-        element:<MyBlogs></MyBlogs>
+        path: "MyBlogs",
+        element: (
+          <PrivateRoutes>
+            {" "}
+            <MyBlogs></MyBlogs>
+          </PrivateRoutes>
+        ),
       },
-    ]
-  }
+    ],
+  },
 ]);
